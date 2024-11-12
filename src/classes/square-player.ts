@@ -1,36 +1,23 @@
-class SquarePlayer {
-    x: number;
-    y: number;
-    width: number;
-    height: number;
+class SquarePlayer extends DynamicObject {
     color: string;
     label: string;
-    speed: number;
-    
     private ctx: CanvasRenderingContext2D;
     
     constructor(private canvas: HTMLCanvasElement){
+        super();
         this.initDefaultValues();
         this.ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
     }
 
     private initDefaultValues(): void {
-        this.x = 0;
-        this.y = 0;
         this.width = 100;
         this.height = 100;
-        this.speed = 1;
         this.color = `rgb(
             ${Math.floor(Math.random()*255)},
             ${Math.floor(Math.random()*255)},
             ${Math.floor(Math.random()*255)}
         )`;
     }
-
-    moveRight(): void { this.x += this.speed; }
-    moveLeft(): void { this.x -= this.speed; }
-    moveUp(): void { this.y -= this.speed; }
-    moveDown(): void { this.y += this.speed; }
 
     draw(): void {
         this.ctx.fillStyle = this.color;
@@ -45,21 +32,5 @@ class SquarePlayer {
         ctxLabel.fillStyle = 'black'
         ctxLabel.font = "20px arial"
         ctxLabel.fillText(this.label, horizontalCenter, verticalCenter);
-    }
-
-    
-
-    
-
-    setPosition(position: Coordinate): void {
-        this.x = position.x;
-        this.y = position.y;
-    }
-
-    getPosition(): Coordinate {
-        return {
-            x: this.x,
-            y: this.y
-        }
     }
 }
