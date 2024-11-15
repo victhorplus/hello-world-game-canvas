@@ -2,8 +2,10 @@ class KeyboardControl {
     movementKeys: MovementKeysInterface;
     private keyPressed: { [key: string]: boolean };
     private keyFunctions: { [key: string]: Function };
+    private object: DynamicObject
 
-    constructor(private object: DynamicObject, movementKeys?: MovementKeysInterface) {
+    constructor(object: DynamicObject, movementKeys?: MovementKeysInterface) {
+        this.object = object;
         this.movementKeys = {
             up:     'ArrowUp',
             down:   'ArrowDown',

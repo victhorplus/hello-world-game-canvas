@@ -1,6 +1,5 @@
 class SquarePlayer extends DynamicObject {
     color: string;
-    label: string;
     private ctx: CanvasRenderingContext2D;
     
     constructor(private canvas: HTMLCanvasElement){
@@ -29,8 +28,23 @@ class SquarePlayer extends DynamicObject {
         const ctxLabel = this.canvas.getContext('2d');
         const horizontalCenter = this.x + (this.width/2) - 8;
         const verticalCenter = this.y + (this.height/2) + 5;
-        ctxLabel.fillStyle = 'black'
-        ctxLabel.font = "20px arial"
+        ctxLabel.fillStyle = 'black';
+        ctxLabel.font = "20px arial";
         ctxLabel.fillText(this.label, horizontalCenter, verticalCenter);
+    }
+
+    hasColision(newPosition: ICoordinate, object: SquarePlayer): boolean {
+        let hasColision: boolean = false;
+        for(let x = object.x; x <= (object.x + object.width); x++){
+        for(let y = object.y; y <= (object.y + object.height); y++){
+            const isInsideX: boolean = (newPosition.x <= x) && (x <= newPosition.x + this.width);
+            const isInsideY: boolean = (newPosition.y <= y) && (y <= newPosition.y + this.height);
+            if(isInsideX && isInsideY){
+                hasColision = true;
+                break;
+            }
+        }
+        }
+        return hasColision;
     }
 }
