@@ -18,7 +18,7 @@ const player5: SquarePlayer = new SquarePlayer(canvas);
 const player6: SquarePlayer = new SquarePlayer(canvas);
 
 function main(): void {
-    player1.label = 'P1';
+    player1.label = 'VICTHOR';
     player1.speed = 2;
     player1.detectableObjects = objects;
     
@@ -37,6 +37,7 @@ function main(): void {
     player5.x = 440;
     player6.x = 550;
 
+
     objects.push(player1);
     objects.push(player2);
     objects.push(player3);
@@ -50,10 +51,8 @@ function update(): void {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     player1Controller.updatePositionByKeyPressed();
     player2Controller.updatePositionByKeyPressed();
+
     for(let object of objects){
         object.draw();
     }
 }
-
-
-main();

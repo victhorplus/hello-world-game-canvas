@@ -21,13 +21,15 @@ class SquarePlayer extends DynamicObject {
     draw(): void {
         this.ctx.fillStyle = this.color;
         this.ctx.fillRect(this.x, this.y, this.width, this.height);
+        this.ctx.strokeRect(this.x, this.y, this.width, this.height);
         if(this.label) this.drawLabel();
     }
 
     private drawLabel(): void {
         const ctxLabel = this.canvas.getContext('2d');
-        const horizontalCenter = this.x + (this.width/2) - 8;
-        const verticalCenter = this.y + (this.height/2) + 5;
+        const textMetrics = ctxLabel.measureText(this.label);
+        const horizontalCenter = this.x + (this.width/2) - (textMetrics.width/2);
+        const verticalCenter = this.y + (this.height/2) + 3;
         ctxLabel.fillStyle = 'black';
         ctxLabel.font = "20px arial";
         ctxLabel.fillText(this.label, horizontalCenter, verticalCenter);
