@@ -44,7 +44,7 @@ function main(): void {
     objects.push(player4);
     objects.push(player5);
     objects.push(player6);
-    setInterval(update, 10);
+    update();
 }
 
 function update(): void {
@@ -55,4 +55,6 @@ function update(): void {
     for(let object of objects){
         object.draw();
     }
+
+    requestAnimationFrame(update);
 }
